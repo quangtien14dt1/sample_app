@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  get 'user/new'
-  get 'static_pages/home'
-  get 'static_pages/help'
-  get 'static_pages/about'
-  get '/signup', to: 'users#new'
-  get '/signup', to: 'users#create'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'static_page#home'
+  get '/help',       to: 'static_page#help'
+  get '/about',      to:'static_page#about'
+  get '.contact',    to: 'static_page#contact'
+  get '/help',       to: 'static_page#help'
+
+  get    '/signup',  to: 'users#new'
+  post   '/signup',  to: 'users#create'
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
 end
